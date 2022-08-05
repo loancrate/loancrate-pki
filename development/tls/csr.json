@@ -1,0 +1,14 @@
+{
+  "key": {
+    "algo": "rsa",
+    "size": 4096
+  },
+  "CN": "Loan Crate Development TLS CA",
+  "names": [
+    {
+      "C": "US",
+      "O": "Loan Crate, Inc.",
+      "OU": "Development TLS CA"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "hosts": ["webhook-client.loancrate.dev"],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "CN": "Loan Crate Development Webhook Client",
+  "names": [
+    {
+      "C": "US",
+      "O": "Loan Crate, Inc.",
+      "OU": "Development Webhook Client"
+    }
+  ]
+}

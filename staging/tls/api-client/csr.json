@@ -1,0 +1,15 @@
+{
+  "hosts": ["api-client.loancrate.dev"],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "CN": "Loan Crate Staging API Client",
+  "names": [
+    {
+      "C": "US",
+      "O": "Loan Crate, Inc.",
+      "OU": "Staging API Client"
+    }
+  ]
+}

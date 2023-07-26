@@ -1,9 +1,16 @@
-.PHONY: all webhook
+CERTIFICATES := api-client webhook
 
-all: webhook tls-bundle.pem
+RENEW_TARGETS := $(addprefix renew-,$(CERTIFICATES))
 
-webhook: tls.pem tls-key.pem
-	cd webhook && make
+.PHONY: all $(CERTIFICATES) $(RENEW_TARGETS)
+
+all: $(CERTIFICATES) tls-bundle.pem
+
+$(CERTIFICATES): tls.pem tls-key.pem
+	cd $@ && $(MAKE)
+
+$(RENEW_TARGETS): renew-%: tls.pem tls-key.pem
+	cd $* && $(MAKE) renew
 
 tls-bundle.pem: tls.pem ../ca.pem
 	mkbundle -f $@ $^

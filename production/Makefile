@@ -1,4 +1,8 @@
-.PHONY: all tls
+CERTIFICATES := api-client webhook
+
+RENEW_TARGETS := $(addprefix renew-,$(CERTIFICATES))
+
+.PHONY: all tls $(RENEW_TARGETS)
 
 ENVIRONMENT := $(notdir $(shell pwd))
 KEY_ARCHIVE := ../$(ENVIRONMENT)-keys.tgz
@@ -6,7 +10,10 @@ KEY_ARCHIVE := ../$(ENVIRONMENT)-keys.tgz
 all: tls $(KEY_ARCHIVE)
 
 tls: ca.pem ca-key.pem
-	cd tls && make
+	cd tls && $(MAKE)
+
+$(RENEW_TARGETS): renew-%:
+	cd tls && $(MAKE) $@
 
 ca.pem ca-key.pem: csr.json
 	cfssl genkey -initca csr.json | cfssljson -bare ca

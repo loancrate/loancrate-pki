@@ -7,14 +7,22 @@ Configuration and scripts to generate LoanCrate's public key infrastructure (PKI
 We use [CFSSL (Cloudflare's PKI and TLS toolkit)](https://github.com/cloudflare/cfssl) to generate certificates and keys.
 They have [installation instructions](https://github.com/cloudflare/cfssl#installation), but the short version with [Homebrew](https://brew.sh/) on Mac is:
 
-```
+```sh
 brew install go
 go install github.com/cloudflare/cfssl/cmd/...@latest
 ```
 
-## Generating certificates, keys, bundles, etc.
+## Generating certificates, keys, bundles, etc
 
 Running `make` in any directory will generate any missing or out of date artifacts in that directory and its subdirectories.
+
+## List certificate expirations
+
+Run `make expiration` to list the expiration date for each certificate in the repository.
+
+## Renewing certificates
+
+Run `make renew-<cert name>` to generate a new certificate with the existing CSR for each environment.
 
 ## Directory structure
 
